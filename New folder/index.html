@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Vara!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffe5ec;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Slide 1 - Opening Kado */
+        .title-s1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4d6d;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .gift-container {
+            cursor: pointer;
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 40px;
+            transition: transform 0.3s;
+        }
+
+        .gift-container:hover {
+            transform: scale(1.05);
+        }
+
+        .gift-box {
+            width: 100%;
+            height: 100%;
+            background-color: #ff758f;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .gift-ribbon-v {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 100%;
+            background-color: #fff0f3;
+        }
+
+        .gift-ribbon-h {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 30px;
+            background-color: #fff0f3;
+        }
+
+        .gift-bow {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 30px;
+            background-color: #fff0f3;
+            border-radius: 50% 50% 0 0;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #c9184a;
+            transform: translateY(-2px);
+        }
+
+        /* Slide 2 - Ucapan & Hiasan */
+        .decorations {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            pointer-events: none;
+        }
+
+        .balloon {
+            width: 40px;
+            height: 50px;
+            background: #ffb3c1;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            display: inline-block;
+            position: relative;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+
+        .balloon:nth-child(2) { background: #ff85a1; animation-delay: 0.5s; }
+        .balloon:nth-child(3) { background: #f7aef8; animation-delay: 1s; }
+        .balloon:nth-child(4) { background: #b388eb; animation-delay: 1.5s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-5deg); }
+            100% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .wishes-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 450px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        .highlight {
+            color: #ff4d6d;
+            font-weight: bold;
+        }
+
+        /* Slide 3 - Roti dan Lilin */
+        .cake {
+            position: relative;
+            width: 180px;
+            height: 120px;
+            background: #f1c40f;
+            border-radius: 20px 20px 10px 10px;
+            margin-top: 40px;
+            box-shadow: 0 8px 0 #d4ac0d;
+        }
+
+        .cake::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #e74c3c;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .cake::after {
+            content: "";
+            position: absolute;
+            top: 35px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: #ffffff;
+        }
+
+        .candle {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(to right, #3498db, #9b59b6);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: #ff9f43;
+            border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+            animation: flicker 0.6s infinite alternate;
+            box-shadow: 0 0 10px #ff9f43, 0 0 20px #ff9f43;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.1) skewX(5deg); opacity: 1; }
+        }
+
+        .hbd-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide1">
+        <div class="title-s1">Happy Birthday Pacar Jengkuk Aneh ❤️<br><span style="font-size: 18px; color: #777;">Ke-24 Tahun</span></div>
+        <div class="gift-container" onclick="nextSlide(2)">
+            <div class="gift-box">
+                <div class="gift-ribbon-v"></div>
+                <div class="gift-ribbon-h"></div>
+                <div class="gift-bow"></div>
+            </div>
+        </div>
+        <button class="btn" onclick="nextSlide(2)">Buka Kado ✨</button>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" id="slide2">
+        <div class="decorations">
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+        </div>
+        <div class="wishes-box">
+            Met ultah ya <span class="highlight">aneh</span>, semoga panjang umur ya aneh, semoga tambah berduit, tmbh sukses, tambah keren kul (tp masih lbih kul aku 😜), semoga tambh di beri rejeki, tmbh di permudh smwny y ok!
+        </div>
+        <button class="btn" onclick="nextSlide(3)">Lanjut Kuenya 🍰</button>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" id="slide3">
+        <div class="hbd-text">HBD ANEH! 🎉</div>
+        <div class="cake">
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+        </div>
+        <button class="btn" style="margin-top: 50px;" onclick="nextSlide(1)">Ulangi dari Awal 🔄</button>
+    </div>
+
+    <script>
+        function nextSlide(slideNumber) {
+            // Sembunyikan semua slide
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            // Tampilkan slide yang dituju
+            document.getElementById('slide' + slideNumber).classList.add('active');
+        }
+    </script>
+</body>
+</html>
